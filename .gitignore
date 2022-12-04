@@ -263,3 +263,4 @@ FakesAssemblies/
 *.opt
 /FindRooMateApi/appsettings.Development.json
 /FindRooMateApi/appsettings.Development.json
+/FindRooMateApi/appsettings.Development.json
