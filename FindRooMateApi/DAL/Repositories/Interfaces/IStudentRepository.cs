@@ -10,4 +10,6 @@ public interface IStudentRepository
     Task<Student> GetAsync(int studentId);
     Task<List<Student>> GetAsync();
 
+    Task<bool> ExistAsync(string name, string surname);
+
 }
