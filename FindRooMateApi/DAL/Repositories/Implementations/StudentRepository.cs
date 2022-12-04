@@ -1,6 +1,7 @@
 ﻿using FindRooMateApi.DAL.Context;
 using FindRooMateApi.DAL.Entities;
 using FindRooMateApi.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FindRooMateApi.DAL.Repositories.Implementations;
 
@@ -11,7 +12,7 @@ public class StudentRepository : IStudentRepository
 
     public StudentRepository(FindRooMateContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
     public async Task<Student> AddAsync(Student student)
     {
@@ -21,23 +22,31 @@ public class StudentRepository : IStudentRepository
         return result.Entity;
     }
 
-    public Task DeleteAsync(int studentId)
+    public async Task<Student> DeleteAsync(int studentId)
     {
-        throw new NotImplementedException();
+        var entity = await GetAsync(studentId);
+        var result = _context.Students.Remove(entity);
+        _ = await _context.SaveChangesAsync();
+
+        return result.Entity;
     }
 
-    public Task<Student> GetAsync(int studentId)
+    public async Task<Student> GetAsync(int studentId)
     {
-        throw new NotImplementedException();
+        var result = await _context.Students.FirstOrDefaultAsync(s => s.Id == studentId);
+        return result;
     }
 
-    public Task<List<Student>> GetAsync()
+    public async Task<List<Student>> GetAsync()
     {
-        throw new NotImplementedException();
+        var result = await _context.Students.ToListAsync();
+        return result;
     }
 
-    public Task<Student> UpdateAsync(string name, string surname)
+    public async Task<Student> UpdateAsync(Student student)
     {
-        throw new NotImplementedException();
+        var result = _context.Students.Update(student);
+        _ = await _context.SaveChangesAsync();
+        return result.Entity;
     }
 }
