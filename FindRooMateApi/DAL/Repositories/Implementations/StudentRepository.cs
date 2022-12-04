@@ -33,7 +33,7 @@ public class StudentRepository : IStudentRepository
 
     public async Task<bool> ExistAsync(string name, string surname)
     {
-      var result = await  _context.Students.AnyAsync(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && s.Surname.Equals(surname, StringComparison.OrdinalIgnoreCase));
+        var result = await _context.Students.AnyAsync(s => s.Name == name && s.Surname == surname);
 
         return result;
     }
