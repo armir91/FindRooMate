@@ -1,4 +1,5 @@
 ﻿using FindRooMateApi.BLL.Services.Interface;
+using FindRooMateApi.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,14 @@ public class StudentController : ControllerBase
     {
         var result = await _studentService.GetAllAsync();
 
+        return Ok(result);
+    }
+
+    [HttpPost("update")]
+
+    public async Task<IActionResult>UpdateById(int id, Student student)
+    {
+       var result =  _studentService.UpdateById(id, student);
         return Ok(result);
     }
 }
