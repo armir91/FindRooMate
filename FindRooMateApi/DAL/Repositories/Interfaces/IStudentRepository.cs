@@ -6,6 +6,7 @@ public interface IStudentRepository
 {
     Task<Student> AddAsync(Student student);
     Task<Student> UpdateAsync(Student student);  
+    Task<Student> UpdateAsync(int id, string name, string surname);  
     Task<Student> DeleteAsync(int studentId);
     Task<Student> GetAsync(int studentId);
     Task<List<Student>> GetAsync();

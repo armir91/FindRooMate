@@ -9,7 +9,7 @@ public interface IStudentService
     Task<List<Student>> GetAllAsync();
 
     Task<Student> GetByIdAsync(int id);
-
-    Task<Student> Update(Student student);
-    Task UpdateById(int id, Student student);
+  
+    Task<Student> UpdateAsyc(Student student);
+    Task<Student> UpdateAsyc(int id, string name, string surname);
 }

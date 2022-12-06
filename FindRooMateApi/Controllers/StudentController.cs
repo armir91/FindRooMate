@@ -38,9 +38,16 @@ public class StudentController : ControllerBase
 
     [HttpPost("update")]
 
-    public async Task<IActionResult>UpdateById(int id, Student student)
+    public async Task<IActionResult>UpdateById(int id, string name, string surname)
     {
-       var result =  _studentService.UpdateById(id, student);
-        return Ok(result);
+        var result =  _studentService.GetByIdAsync(id);
+        if (result == null)
+        {
+        return BadRequest("Please provide all information for student!");
+
+        }
+        var result2 = _studentService.UpdateAsyc(id, name, surname);
+
+        return Ok(result2);
     }
 }

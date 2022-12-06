@@ -45,25 +45,30 @@ public class StudentService : IStudentService
         return result;
     }
 
-    public async Task<Student> Update(Student student)
+
+    public async Task<Student> UpdateAsyc(int id, string name, string surname)
+    {
+        var student = await _studentRepository.GetAsync(id);
+        var student2 = new Student
+        {
+            Name = name,
+            Surname = surname
+        };
+
+        if (student != null)
+        {
+            throw new Exception("Doesnt Exist");
+        }
+        student.Equals(student2);
+
+        var result = await _studentRepository.UpdateAsync(student);
+        return result;
+    }
+
+    public async Task<Student> UpdateAsyc(Student student)
     {
         var result = await _studentRepository.UpdateAsync(student);
         return result;
     }
-    public async Task<Student> UpdateById(int id, Student student)
-    {
-       ;
-        Student student1 = await GetByIdAsync(id);
-        if (student1 != null)
-        {
-            student1.Name = student.Name;
-            student1.Surname = student.Surname;
-        }
-        return await Update(student);
-    }
-
-    Task IStudentService.UpdateById(int id, Student student)
-    {
-        throw new NotImplementedException();
-    }
 }
+

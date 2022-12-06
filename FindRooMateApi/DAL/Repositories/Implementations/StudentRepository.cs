@@ -33,7 +33,7 @@ public class StudentRepository : IStudentRepository
 
     public async Task<bool> ExistAsync(string name, string surname)
     {
-      var result = await  _context.Students.AnyAsync(s => s.Name== name && s.Surname == surname);
+        var result = await _context.Students.AnyAsync(s => s.Name == name && s.Surname == surname);
 
         return result;
     }
@@ -55,5 +55,15 @@ public class StudentRepository : IStudentRepository
         var result = _context.Students.Update(student);
         _ = await _context.SaveChangesAsync();
         return result.Entity;
+    }
+
+    public async Task<Student> UpdateAsync(int id, string name, string surname)
+    {
+        var student = new Student 
+        { Name = name, Surname = surname };
+        var result = _context.Students.Update(student);
+        _ = await _context.SaveChangesAsync();
+        return result.Entity;
+
     }
 }
