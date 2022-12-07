@@ -4,6 +4,7 @@ using FindRooMateApi.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindRooMateApi.Migrations
 {
     [DbContext(typeof(FindRooMateContext))]
-    partial class FindRooMateContextModelSnapshot : ModelSnapshot
+    [Migration("20221207220836_Add_Room_To_Announcement")]
+    partial class Add_Room_To_Announcement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
