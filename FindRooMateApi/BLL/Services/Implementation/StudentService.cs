@@ -2,6 +2,7 @@
 using FindRooMateApi.DAL.Entities;
 using FindRooMateApi.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace FindRooMateApi.BLL.Services.Implementation;
 
@@ -52,7 +53,7 @@ public class StudentService : IStudentService
 
             return studentUpdate;
         }
-        return null;
+        throw new Exception("Student does not exist!");
     }
 
     public async Task<Student> DeleteAsync(int id)
@@ -62,6 +63,6 @@ public class StudentService : IStudentService
         {
             await _studentRepository.DeleteAsync(id);
         }
-        return null;
+        throw new Exception("Student does not exist!");
     }
 }
