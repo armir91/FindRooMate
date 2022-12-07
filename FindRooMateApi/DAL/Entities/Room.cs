@@ -8,6 +8,7 @@ namespace FindRooMateApi.DAL.Entities
         public Room()
         {
             RoomStudents = new HashSet<RoomStudent>();
+            Announcements = new HashSet<Announcement>();
         }
 
         public int Id { get; set; }
@@ -17,5 +18,6 @@ namespace FindRooMateApi.DAL.Entities
 
         public virtual Dormitory Dormitory { get; set; } = null!;
         public virtual ICollection<RoomStudent> RoomStudents { get; set; }
+        public virtual ICollection<Announcement> Announcements { get; set; }
     }
 }
