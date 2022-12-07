@@ -9,4 +9,6 @@ public interface IStudentService
     Task<List<Student>> GetAllAsync();
 
     Task<Student> UpdateStudentAsync(int id, Student student);
+
+    Task<Student> DeleteAsync(int id);
 }

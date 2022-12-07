@@ -42,4 +42,11 @@ public class StudentController : ControllerBase
         var updateStudent = await _studentService.UpdateStudentAsync(id, student);
         return Ok(updateStudent);
     }
+
+    [HttpDelete("Delete-Student/{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+       var deletedStudent = await _studentService.DeleteAsync(id);
+        return Ok($"Student with id {id} deleted successfully.");
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using FindRooMateApi.BLL.Services.Interface;
 using FindRooMateApi.DAL.Entities;
 using FindRooMateApi.DAL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FindRooMateApi.BLL.Services.Implementation;
 
@@ -50,6 +51,16 @@ public class StudentService : IStudentService
             var studentUpdate = await _studentRepository.GetAsync(id);
 
             return studentUpdate;
+        }
+        return null;
+    }
+
+    public async Task<Student> DeleteAsync(int id)
+    {
+        var studentExist = await _studentRepository.GetAsync(id);
+        if (studentExist != null)
+        {
+            await _studentRepository.DeleteAsync(id);
         }
         return null;
     }
