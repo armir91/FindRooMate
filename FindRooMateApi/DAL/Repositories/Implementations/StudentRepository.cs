@@ -2,6 +2,7 @@
 using FindRooMateApi.DAL.Entities;
 using FindRooMateApi.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace FindRooMateApi.DAL.Repositories.Implementations;
 
@@ -50,10 +51,15 @@ public class StudentRepository : IStudentRepository
         return result;
     }
 
-    public async Task<Student> UpdateAsync(int id, Student student)
+    public async Task<Student> UpdateAsync(Student student)
     {
-        var result = _context.Students.Update(student);
+       // var result = _context.Students.up(student);
+
+        _context.Entry(student).State = EntityState.Modified;
+
         _ = await _context.SaveChangesAsync();
-        return result.Entity;
+
+        return null;
+       // return result.Entity;
     }
 }

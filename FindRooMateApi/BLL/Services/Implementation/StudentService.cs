@@ -45,7 +45,12 @@ public class StudentService : IStudentService
             studentExist.Name = student.Name;
             studentExist.Surname = student.Surname;
 
+            await _studentRepository.UpdateAsync(student);
+
+            var studentUpdate = await _studentRepository.GetAsync(id);
+
+            return studentUpdate;
         }
-        return studentExist;
+        return null;
     }
 }

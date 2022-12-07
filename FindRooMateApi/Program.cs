@@ -4,6 +4,7 @@ using FindRooMateApi.DAL.Context;
 using FindRooMateApi.DAL.Repositories.Implementations;
 using FindRooMateApi.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,11 @@ builder.Services.AddSwaggerGen();
 
 // add database dependecy
 _ = builder.Services.AddDbContext<FindRooMateContext>(c =>
-    c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    c.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+});
 
 // add dependecy injection for classes and interfaces
 //kshu duhet ber per cdo rast, qe te funksionoj cit.
