@@ -36,4 +36,16 @@ public class StudentService : IStudentService
 
         return result;
     }
+
+    public async Task<Student> UpdateStudentAsync(int id, Student student)
+    {
+        var studentExist = await _studentRepository.GetAsync(id);
+        if (studentExist != null)
+        {
+            studentExist.Name = student.Name;
+            studentExist.Surname = student.Surname;
+
+        }
+        return studentExist;
+    }
 }

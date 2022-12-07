@@ -50,7 +50,7 @@ public class StudentRepository : IStudentRepository
         return result;
     }
 
-    public async Task<Student> UpdateAsync(Student student)
+    public async Task<Student> UpdateAsync(int id, Student student)
     {
         var result = _context.Students.Update(student);
         _ = await _context.SaveChangesAsync();

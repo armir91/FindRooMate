@@ -7,4 +7,6 @@ public interface IStudentService
     Task<Student> AddAsync(string name, string surname);
 
     Task<List<Student>> GetAllAsync();
+
+    Task<Student> UpdateStudentAsync(int id, Student student);
 }
