@@ -9,6 +9,12 @@ namespace FindRooMateApi.DAL.Repositories.Implementations
     public class DormitoryRepository : IDormitoryRepository
     {
         protected FindRooMateContext _context;
+
+        public DormitoryRepository(FindRooMateContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         public async Task<Dormitory> AddAsync(Dormitory dormitory)
         {
             var result = _context.Dormitories.Add(dormitory);

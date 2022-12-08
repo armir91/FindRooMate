@@ -27,6 +27,8 @@ _ = builder.Services.AddDbContext<FindRooMateContext>(c =>
 //kshu duhet ber per cdo rast, qe te funksionoj cit.
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IDormitoryRepository, DormitoryRepository>();
+builder.Services.AddScoped<IDormitoryService, DormitoryService>();
 
 var app = builder.Build();
 
