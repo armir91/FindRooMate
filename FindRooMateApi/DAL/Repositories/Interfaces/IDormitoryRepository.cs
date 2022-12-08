@@ -9,6 +9,8 @@ namespace FindRooMateApi.DAL.Repositories.Interfaces
         Task<Dormitory> DeleteAsync(int dormitoryId);
         Task<Dormitory> GetAsync(int dormitoryId);
         Task<List<Dormitory>> GetAsync();
-
+        Task<bool> Exist(string name, string code);
+        Task<bool> Exist(int id);
+       
     }
 }

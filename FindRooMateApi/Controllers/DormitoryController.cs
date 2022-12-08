@@ -26,8 +26,11 @@ namespace FindRooMateApi.Controllers
             return Ok(createdDormitory);
 
         }
-
-
-
+        [HttpGet("get all")]
+        public async Task<IActionResult> List()
+        {
+            var result = await _dormitoryService.GetAllAsync();
+            return Ok(result);
+        }
     }
 }

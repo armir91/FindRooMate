@@ -21,7 +21,8 @@ namespace FindRooMateApi.BLL.Services.Implementation
                 Capacity = capacity
                 
             };
-            return null;
+            var result = _roomRepository.AddAsync(room);
+            return result;
         }
     }
 }

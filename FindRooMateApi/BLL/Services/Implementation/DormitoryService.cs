@@ -16,13 +16,32 @@ namespace FindRooMateApi.BLL.Services.Implementation
         {
             var dormitory = new Dormitory
             {
-                Code= code,
-                Name= name,
-                MaxCapacity= maxcap
+                Code = code,
+                Name = name,
+                MaxCapacity = maxcap
             };
             var result = await _dormitoryrepository.AddAsync(dormitory);
 
             return result;
+        }
+
+        public async Task<List<Dormitory>> GetAllAsync()
+        {
+            var result = await _dormitoryrepository.GetAsync();
+            return result;
+        }
+
+        public async Task<int> GetAsync(int id)
+        {
+            var exist = await _dormitoryrepository.Exist(id);
+            if (exist)
+            {
+                var result = await _dormitoryrepository.GetAsync(id);
+                return result.Id;
+
+            }
+            throw new Exception("Dormitory doesn't exist");
+
         }
     }
 }
