@@ -24,5 +24,11 @@ namespace FindRooMateApi.BLL.Services.Implementation
 
             return result;
         }
+
+        public async Task<Dormitory> GetAsync(int id)
+        {
+            var result = await _dormitoryrepository.GetAsync(id);
+            return result;
+        }
     }
 }
