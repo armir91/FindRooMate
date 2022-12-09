@@ -10,5 +10,5 @@ public interface IStudentService
 
     Task<Student> UpdateStudentAsync(int id, Student student);
 
-    Task<Student> DeleteAsync(int id);
+    Task<bool> DeleteAsync(int id);
 }
