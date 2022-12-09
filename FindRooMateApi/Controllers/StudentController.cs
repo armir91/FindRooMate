@@ -29,7 +29,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet("read")]
-    public async Task<IActionResult>Get()
+    public async Task<IActionResult> Get()
     {
         var result = await _studentService.GetAllAsync();
 
@@ -46,7 +46,15 @@ public class StudentController : ControllerBase
     [HttpDelete("Delete-Student/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-       var deletedStudent = await _studentService.DeleteAsync(id);
-        return Ok($"Student with id {id} deleted successfully.");
+        var isDeleted = await _studentService.DeleteAsync(id);
+        if (isDeleted)
+        {
+
+            return Ok($"Student with id {id} deleted successfully.");
+        }
+        else
+        {
+            return BadRequest("Problems during delete!");
+        }
     }
 }

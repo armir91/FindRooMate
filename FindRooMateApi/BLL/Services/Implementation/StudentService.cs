@@ -42,6 +42,7 @@ public class StudentService : IStudentService
     public async Task<Student> UpdateStudentAsync(int id, Student student)
     {
         var studentExist = await _studentRepository.GetAsync(id);
+
         if (studentExist != null)
         {
             studentExist.Name = student.Name;
@@ -53,16 +54,19 @@ public class StudentService : IStudentService
 
             return studentUpdate;
         }
-        throw new Exception("Student does not exist!");
+        return null;
     }
 
-    public async Task<Student> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var studentExist = await _studentRepository.GetAsync(id);
+
         if (studentExist != null)
         {
             await _studentRepository.DeleteAsync(id);
+            return true;
+
         }
-        throw new Exception("Student does not exist!");
+        return false;
     }
 }

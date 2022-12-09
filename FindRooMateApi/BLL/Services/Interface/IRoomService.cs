@@ -4,7 +4,8 @@ namespace FindRooMateApi.BLL.Services.Interface
 {
     public interface IRoomService
     {
-        Task<Room> AddAsync(string name, int dormitoryid, int capacity);
-        
+        Task<int> AddAsync(string name, int dormitoryId, int capacity);
+        Task<List<Room>> GetAllAsync();
+
     }
 }
