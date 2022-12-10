@@ -8,5 +8,7 @@ public interface IAnnouncementRepository
     Task<Announcement> UpdateAsync(Announcement announcement);
     Task<Announcement> DeleteAsync(int announcementId);
     Task<Announcement> GetAsync(int announcementId);
+    Task<Announcement> GetActiveAsync(int announcementId); 
+    Task<Announcement> GetActiveAsyncwithRoom(int announcementId);
     Task<List<Announcement>> GetAsync();
 }

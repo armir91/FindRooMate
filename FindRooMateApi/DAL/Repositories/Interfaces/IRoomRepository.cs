@@ -10,6 +10,7 @@ namespace FindRooMateApi.DAL.Repositories.Interfaces
         Task<Room> GetAsync(int roomId);
         Task<Room> GetRoomWithDormitoryAsync(int roomId);
         Task<List<Room>> GetAsync();
+        Task<bool> Exist(int roomId);
   
     }
 }

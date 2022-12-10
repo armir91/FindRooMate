@@ -6,6 +6,7 @@ namespace FindRooMateApi.BLL.Services.Interface
     {
         Task<Room> AddAsync(string name, int dormitoryId, int capacity);
         Task<List<Room>> GetAllAsync();
+        Task<Room> GetByIdAsync(int id);
 
     }
 }

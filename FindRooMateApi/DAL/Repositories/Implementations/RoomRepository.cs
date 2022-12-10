@@ -2,6 +2,7 @@
 using FindRooMateApi.DAL.Entities;
 using FindRooMateApi.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace FindRooMateApi.DAL.Repositories.Implementations;
 
@@ -58,5 +59,12 @@ public class RoomRepository : IRoomRepository
         var result = _context.Rooms.Update(room);
         _ = await _context.SaveChangesAsync();
         return result.Entity;
+    }
+
+    public async Task<bool> Exist(int roomId)
+    {
+        var result = await _context.Rooms.AnyAsync(s => s.Id == roomId );
+
+        return result;
     }
 }
