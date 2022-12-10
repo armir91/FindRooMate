@@ -31,7 +31,7 @@ namespace FindRooMateApi.Controllers
         {
             if (string.IsNullOrEmpty(name) || dormitoryId == 0 || capacity == 0)
             {
-                BadRequest("Please provide all neccesary information for the room");
+                return BadRequest("Please provide all neccesary information for the room");
             }
 
             var result = await _roomService.AddAsync(name, dormitoryId, capacity);
