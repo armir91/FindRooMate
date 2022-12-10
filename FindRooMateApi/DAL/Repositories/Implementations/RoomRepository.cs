@@ -34,6 +34,16 @@ public class RoomRepository : IRoomRepository
     public async Task<Room> GetAsync(int roomId)
     {
         var result = await _context.Rooms.FirstOrDefaultAsync(s => s.Id == roomId);
+
+        return result;
+    }
+
+    public async Task<Room> GetRoomWithDormitoryAsync(int roomId)
+    {
+        var result = await _context.Rooms
+            .Include(x => x.Dormitory)
+            .FirstOrDefaultAsync(s => s.Id == roomId);
+
         return result;
     }
 

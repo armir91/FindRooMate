@@ -3,6 +3,7 @@ using FindRooMateApi.BLL.Services.Interface;
 using FindRooMateApi.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FindRooMateApi.Controllers
 {
@@ -11,12 +12,10 @@ namespace FindRooMateApi.Controllers
     public class RoomController : ControllerBase
     {
         private readonly IRoomService _roomService;
-        private readonly IDormitoryService _dormitoryService;
 
-        public RoomController(IRoomService roomservice, IDormitoryService dormitoryService)
+        public RoomController(IRoomService roomservice)
         {
             _roomService = roomservice ?? throw new ArgumentNullException(nameof(roomservice));
-            _dormitoryService = dormitoryService ?? throw new ArgumentNullException(nameof(dormitoryService));
         }
 
         [HttpGet("read")]
@@ -28,24 +27,16 @@ namespace FindRooMateApi.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] Room room)
+        public async Task<IActionResult> Create(string name, int dormitoryId, int capacity)
         {
-            if (string.IsNullOrEmpty(room.Name) && room.Capacity == 0 && room.DormitoryId == 0)
+            if (string.IsNullOrEmpty(name) || dormitoryId == 0 || capacity == 0)
             {
                 BadRequest("Please provide all neccesary information for the room");
             }
-            var result = await _roomService.AddAsync(room.Name, room.DormitoryId, room.Capacity);
 
-            if (result <= 0)
-            {
-                return BadRequest("The room has not been created successfully!");
-            }
-            else
-            {
-                string uri = $"https://localhost:7164/api/Room/{result}/";
-                return Created(uri, result);
-            }
+            var result = await _roomService.AddAsync(name, dormitoryId, capacity);
 
+            return Ok(result);
         }
     }
 }

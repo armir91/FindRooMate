@@ -9,7 +9,7 @@ namespace FindRooMateApi.BLL.Services.Implementation
     {
         private readonly IRoomRepository _roomRepository;
         private readonly IDormitoryRepository _dormitoryRepository;
-        public RoomService(IRoomRepository roomRepository, IDormitoryRepository dormitoryRepository )
+        public RoomService(IRoomRepository roomRepository, IDormitoryRepository dormitoryRepository)
         {
             _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
             _dormitoryRepository = dormitoryRepository;
@@ -23,23 +23,27 @@ namespace FindRooMateApi.BLL.Services.Implementation
         }
 
         //public async Task<Room> GetAsync();
-        public async Task<int> AddAsync(string name, int dormitoryId, int capacity)
+        public async Task<Room> AddAsync(string name, int dormitoryId, int capacity)
         {
-                var dormitory = await _dormitoryRepository.GetAsync(dormitoryId);
-                if (dormitory == null) {
+            var dormitoryExist = await _dormitoryRepository.Exist(dormitoryId);
+            if (!dormitoryExist)
+            {
 
-                    throw new Exception("There was no dormitory found with the id passed"); 
-                }
+                throw new Exception("There was no dormitory found with the id passed");
+            }
 
-                var room = new Room
-                {
-                    Name = name,
-                    DormitoryId = dormitory.Id,
-                    Capacity = capacity
+            var room = new Room
+            {
+                Name = name,
+                DormitoryId = dormitoryId,
+                Capacity = capacity
+            };
 
-                };
-                var result = await _roomRepository.AddAsync(room);
-                return result.Id;
+            var createdRoom = await _roomRepository.AddAsync(room);
+
+            var result = await _roomRepository.GetRoomWithDormitoryAsync(createdRoom.Id);
+
+            return result;
         }
     }
 }

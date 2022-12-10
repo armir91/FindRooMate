@@ -8,6 +8,7 @@ namespace FindRooMateApi.DAL.Repositories.Interfaces
         Task<Room> UpdateAsync(Room room);
         Task<Room> DeleteAsync(int roomId);
         Task<Room> GetAsync(int roomId);
+        Task<Room> GetRoomWithDormitoryAsync(int roomId);
         Task<List<Room>> GetAsync();
   
     }

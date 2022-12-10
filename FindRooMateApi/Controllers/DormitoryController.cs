@@ -1,5 +1,4 @@
 ﻿using FindRooMateApi.BLL.Services.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FindRooMateApi.Controllers
@@ -26,7 +25,7 @@ namespace FindRooMateApi.Controllers
             return Ok(createdDormitory);
 
         }
-        [HttpGet("get all")]
+        [HttpGet("get")]
         public async Task<IActionResult> List()
         {
             var result = await _dormitoryService.GetAllAsync();

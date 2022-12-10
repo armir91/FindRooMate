@@ -6,6 +6,6 @@ namespace FindRooMateApi.BLL.Services.Interface
     {
         Task<Dormitory> AddAsync(string code, string name, int maxcap);
         Task<List<Dormitory>> GetAllAsync();
-        Task<int> GetAsync(int id);
+        Task<Dormitory> GetAsync(int id);
     }
 }
