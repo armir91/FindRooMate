@@ -12,7 +12,7 @@ namespace FindRooMateApi.BLL.Services.Implementation
         public RoomService(IRoomRepository roomRepository, IDormitoryRepository dormitoryRepository)
         {
             _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
-            _dormitoryRepository = dormitoryRepository;
+            _dormitoryRepository = dormitoryRepository ?? throw new ArgumentNullException(nameof(dormitoryRepository));
         }
 
         public async Task<List<Room>> GetAllAsync()
@@ -43,6 +43,12 @@ namespace FindRooMateApi.BLL.Services.Implementation
 
             var result = await _roomRepository.GetRoomWithDormitoryAsync(createdRoom.Id);
 
+            return result;
+        }
+
+        public async Task<Room> GetByIdAsync(int id)
+        {
+            var result = await _roomRepository.GetAsync(id);
             return result;
         }
     }

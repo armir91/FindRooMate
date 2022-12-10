@@ -8,7 +8,7 @@ namespace FindRooMateApi.DAL.Entities
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int AnnouncementId { get; set; }
-        public DateTime ApplicationDate { get; set; }
+        public DateTime ApplicationDate { get; set; } = DateTime.Now;
         public bool? IsActive { get; set; }
 
         public virtual Announcement Announcement { get; set; } = null!;

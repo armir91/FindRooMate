@@ -36,6 +36,8 @@ builder.Services.AddScoped<IDormitoryRepository, DormitoryRepository>();
 builder.Services.AddScoped<IDormitoryService, DormitoryService>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
+builder.Services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 
 var app = builder.Build();
 
