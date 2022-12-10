@@ -39,7 +39,7 @@ public class AnnouncementRepository : IAnnouncementRepository
     public async Task<Announcement> GetActiveAsyncwithRoom(int announcementId)
     {
         var result = await _context.Announcements.Include(x=>x.Room)
-            .FirstOrDefaultAsync(x => x.Id == announcementId && x.IsActive.Equals(1));
+            .FirstOrDefaultAsync(x => x.Id == announcementId && x.IsActive == true);
         return result;
     }
 

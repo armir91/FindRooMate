@@ -34,7 +34,7 @@ namespace FindRooMateApi.Controllers
         [HttpGet("get")]
         public async Task<IActionResult> Get(int announcementId)
         {
-            var result = _announcementService.GetAsync(announcementId);
+            var result = await _announcementService.GetAsync(announcementId);
             return Ok(result);
         }
 
