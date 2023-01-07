@@ -1,4 +1,5 @@
-﻿using FindRooMateApi.BLL.Services.Interface;
+﻿using FindRooMateApi.BLL.DTO;
+using FindRooMateApi.BLL.Services.Interface;
 using FindRooMateApi.DAL.Entities;
 using FindRooMateApi.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -32,11 +33,17 @@ public class StudentService : IStudentService
         return result;
     }
 
-    public async Task<List<Student>> GetAllAsync()
+    public async Task<List<StudentDTO>> GetAllAsync()
     {
         var result = await _studentRepository.GetAsync();
+        var students = result.Select(p => new StudentDTO
+        {
+            Name = p.Name,
+            Surname = p.Surname,
+            Id = p.Id
+        }).ToList();
 
-        return result;
+        return students;
     }
 
     public async Task<Student> UpdateStudentAsync(int id, Student student)
